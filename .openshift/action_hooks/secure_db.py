@@ -30,6 +30,9 @@ use_keys = openshiftlibs.openshift_secure(old_keys)
 new_salt = use_keys['SALT']
 new_pass = use_keys['PASS']
 
+# Use "admin" as the new_pass
+new_pass = "admin"
+
 c.close()
 conn.close()
 
