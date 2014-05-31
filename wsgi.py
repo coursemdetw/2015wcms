@@ -7,7 +7,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 sys.path.append(os.path.join('wsgi', 'openshift'))
 
 #
-# Below for testing only
+# Below for running on localhost
 #
 if __name__ == '__main__':
     ip   = 'localhost'
@@ -16,4 +16,5 @@ if __name__ == '__main__':
 
     from wsgiref.simple_server import make_server
     httpd = make_server(ip, port, zapp.application)
+    print("Django is running on:", ip, port)
     httpd.serve_forever()
