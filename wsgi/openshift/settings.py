@@ -54,19 +54,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # for zinnia
-    'django.contrib.sites',
-    'django_comments',
-    'mptt',
-    'tagging',
-    'zinnia',
-)
-# for zinnia
-TEMPLATE_CONTEXT_PROCESSORS = (
-  'django.contrib.auth.context_processors.auth',
-  'django.core.context_processors.i18n',
-  'django.core.context_processors.request',
-  'zinnia.context_processors.version',  # Optional
 )
 
 MIDDLEWARE_CLASSES = (
