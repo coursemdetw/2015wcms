@@ -1,7 +1,14 @@
+#@+leo-ver=5-thin
+#@+node:2014spring.20140628104046.1746: * @file openshiftlibs.py
+#@@language python
+#@@tabwidth -4
+#@+others
+#@+node:2014spring.20140628104046.1747: ** openshiftlibs declarations
 #!/usr/bin/env python
 import hashlib, inspect, os, random, sys
 
 
+#@+node:2014spring.20140628104046.1748: ** get_openshift_secret_token
 # Gets the secret token provided by OpenShift
 # or generates one (this is slightly less secure, but good enough for now)
 def get_openshift_secret_token():
@@ -14,6 +21,7 @@ def get_openshift_secret_token():
         return hashlib.sha256(name.encode('utf-8') + '-'.encode('utf-8') + uuid.encode('utf-8')).hexdigest()
     return None
 
+#@+node:2014spring.20140628104046.1749: ** openshift_secure
 # Loop through all provided variables and generate secure versions
 # If not running on OpenShift, returns defaults and logs an error message
 #
@@ -58,30 +66,33 @@ def openshift_secure(default_keys, secure_function = 'make_secure_key'):
     return my_list
 
 
+#@+node:2014spring.20140628104046.1750: ** make_secure_key
 # This function transforms default keys into per-deployment random keys;
 def make_secure_key(key_info):
-	hashcode = key_info['hash']
-	key      = key_info['variable']
-	original = key_info['original']
+    hashcode = key_info['hash']
+    key      = key_info['variable']
+    original = key_info['original']
 
-	# These are the legal password characters
-	# as per the Django source code
-	# (django/contrib/auth/models.py)
-	chars  = 'abcdefghjkmnpqrstuvwxyz'
-	chars += 'ABCDEFGHJKLMNPQRSTUVWXYZ'
-	chars += '23456789'
+    # These are the legal password characters
+    # as per the Django source code
+    # (django/contrib/auth/models.py)
+    chars  = 'abcdefghjkmnpqrstuvwxyz'
+    chars += 'ABCDEFGHJKLMNPQRSTUVWXYZ'
+    chars += '23456789'
 
-	# Use the hash to seed the RNG
-	random.seed(int("0x" + hashcode[:8], 0))
+    # Use the hash to seed the RNG
+    random.seed(int("0x" + hashcode[:8], 0))
 
-	# Create a random string the same length as the default
-	rand_key = ''
-	for _ in range(len(original)):
-		rand_pos = random.randint(0,len(chars))
-		rand_key += chars[rand_pos:(rand_pos+1)]
+    # Create a random string the same length as the default
+    rand_key = ''
+    for _ in range(len(original)):
+        rand_pos = random.randint(0,len(chars))
+        rand_key += chars[rand_pos:(rand_pos+1)]
 
-	# Reset the RNG
-	random.seed()
+    # Reset the RNG
+    random.seed()
 
-	# Set the value
-	return rand_key
+    # Set the value
+    return rand_key
+#@-others
+#@-leo

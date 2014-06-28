@@ -1,3 +1,9 @@
+#@+leo-ver=5-thin
+#@+node:2014spring.20140628104046.1768: * @file urls.py
+#@@language python
+#@@tabwidth -4
+#@+others
+#@+node:2014spring.20140628104046.1769: ** urls declarations
 from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
@@ -13,3 +19,5 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
+#@-others
+#@-leo

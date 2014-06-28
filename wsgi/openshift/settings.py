@@ -1,3 +1,9 @@
+#@+leo-ver=5-thin
+#@+node:2014spring.20140628104046.1766: * @file settings.py
+#@@language python
+#@@tabwidth -4
+#@+others
+#@+node:2014spring.20140628104046.1767: ** settings declarations
 """
 Django settings for openshift project.
 
@@ -126,3 +132,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
 STATIC_URL = '/static/'
+#@-others
+#@-leo
